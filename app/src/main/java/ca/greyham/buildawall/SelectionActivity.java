@@ -1,5 +1,6 @@
 package ca.greyham.buildawall;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -17,5 +18,24 @@ public class SelectionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_selection);
+    }
+
+    public void onFragmentInteraction(boolean pass)
+    {
+        //revive/wait response from the server
+
+        if(pass){
+            //vote passed: fire the intent to voteActivity
+            Intent voteActivity = new Intent(SelectionActivity.this, VoteActivity.class);
+            startActivity(voteActivity);
+
+        }else{
+            //vote failed: this the list of clients, wait for response, keep going selection(in selectionActivity)
+            //vote failed: or already five times, go back to main activity
+            Intent mainActivity = new Intent(SelectionActivity.this, MainActivity.class);
+            startActivity(mainActivity);
+        }
+
+
     }
 }

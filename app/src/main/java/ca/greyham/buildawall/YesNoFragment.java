@@ -4,9 +4,11 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 
 /**
@@ -64,14 +66,45 @@ public class YesNoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_yes_no, container, false);
-    }
+        final View view = inflater.inflate(R.layout.fragment_yes_no, container, false);
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
+        Context context = this.getActivity();
+        if(context instanceof OnFragmentInteractionListener){
+            mListener = (OnFragmentInteractionListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnFragmentInteractionListener");
         }
+
+        //Yes Button
+        Button applyButtonYes = (Button) view.findViewById(R.id.buttonYes);
+        applyButtonYes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.e("Apply_On_Click", "On click event fired");
+                if (mListener != null) {
+                    mListener.onFragmentInteraction(true);
+                } else {
+                    Log.e ("Apply_On_Click", "mListener is null");
+                }
+            }
+        });
+
+        //No Button
+        Button applyButtonNo = (Button) view.findViewById(R.id.buttonNo);
+        applyButtonNo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.e("Apply_On_Click", "On click event fired");
+                if (mListener != null) {
+                    mListener.onFragmentInteraction(false);
+                } else {
+                    Log.e ("Apply_On_Click", "mListener is null");
+                }
+            }
+        });
+
+        return view;
     }
 
     @Override
@@ -103,6 +136,6 @@ public class YesNoFragment extends Fragment {
      */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+        void onFragmentInteraction(boolean pass);
     }
 }
