@@ -2,6 +2,8 @@ package ca.greyham.buildawall;
 
 import android.os.AsyncTask;
 
+import com.google.gson.Gson;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -24,17 +26,23 @@ public class SocketTask extends AsyncTask<Void, Void, Void> {
     private boolean isFinished = false;
     private String destAddress;
     private int destPort;
+    private DataObject input = null;
+    private DataObject output = null;
     private String request = "";
     private String response = "";
 
-    SocketTask(String address, int port, String request){
+    Gson gson  = new Gson();
+
+    private SocketTask(String address, int port, DataObject request){
         this.destAddress = address;
         this.destPort = port;
-        this.request = new String(request);
+        input = request;
     }
 
     @Override
     protected Void doInBackground(Void... arg0) {
+
+        request = gson.toJson(input);
 
         Socket socket = null;
 
@@ -80,6 +88,7 @@ public class SocketTask extends AsyncTask<Void, Void, Void> {
 
     @Override
     protected void onPostExecute(Void result) {
+        output = gson.fromJson(response, DataObject.class);
         isFinished = true;
         super.onPostExecute(result);
     }
@@ -88,9 +97,8 @@ public class SocketTask extends AsyncTask<Void, Void, Void> {
         return isFinished;
     }
 
-    public String getResponse(){
-
-        return new String(response);
+    public DataObject getResponse(){
+        return output;
     }
 
 }
