@@ -63,6 +63,10 @@ public class SelectionActivity extends AppCompatActivity {
         if(pass){
             //vote passed: fire the intent to voteActivity
             Intent voteActivity = new Intent(SelectionActivity.this, VoteActivity.class);
+            Bundle b = new Bundle();
+            String bill = "";
+            b.putString("bill_key", bill); //Your id
+            voteActivity.putExtras(b);
             startActivity(voteActivity);
 
         }else{

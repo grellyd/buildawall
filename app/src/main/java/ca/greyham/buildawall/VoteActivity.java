@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 public class VoteActivity extends AppCompatActivity {
 
+    public String bill = ""; //new
+
     // TODO: Query the server for vote object that describes the current vote.
     // TODO: Show the vote to be considered
     // TODO: Submit the vote choice
@@ -19,6 +21,10 @@ public class VoteActivity extends AppCompatActivity {
         setContentView(R.layout.activity_vote);
 
         //new
+
+        Bundle bundle = getIntent().getExtras();
+        bill = bundle.getString("bill_key");
+
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
