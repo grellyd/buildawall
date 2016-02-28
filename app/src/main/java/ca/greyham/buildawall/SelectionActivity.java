@@ -20,8 +20,6 @@ public class SelectionActivity extends AppCompatActivity {
     //TODO: If passed then fire the intent to the vote activity
     //TODO: If failed five times, fire the intent to the main_activity
 
-    private Fragment dynamicYesNoFragment;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,12 +32,12 @@ public class SelectionActivity extends AppCompatActivity {
         List<MemberOC> mocList = new ArrayList<MemberOC>();
 
         for (MemberOC moc : mocList) {
-            fragmentManager.beginTransaction();
+            fragmentManager.beginTransaction().setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out);
             Fragment newMOCCheckboxFragment = MOCCheckboxFragment.newInstance(moc.getName());
             fragmentTransaction.add(R.id.selection_scroll_view, newMOCCheckboxFragment,"");
         }
 
-        dynamicYesNoFragment = YesNoFragment.newInstance();
+        Fragment dynamicYesNoFragment = YesNoFragment.newInstance();
         fragmentTransaction.add(R.id.selection_linear_layout, dynamicYesNoFragment, "dynamic_yesNo_fragment_tag");
         fragmentTransaction.commit();
     }
@@ -49,9 +47,9 @@ public class SelectionActivity extends AppCompatActivity {
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction()
                 .setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out)
-                .hide(dynamicYesNoFragment)
+                .hide(fragmentManager.findFragmentByTag("dynamic_yesNo_fragment_tag"))
                 .commit();
-        
+
         //revive/wait response from the server
 
         if(pass){
