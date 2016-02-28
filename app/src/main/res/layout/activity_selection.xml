@@ -9,4 +9,25 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="ca.greyham.buildawall.SelectionActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:id="@+id/selection_linear_layout">
+
+        <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/activity_selection_title"
+        />
+
+        <ScrollView
+            android:id="@+id/selection_scroll_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </ScrollView>
+    </LinearLayout>
+
+
 </RelativeLayout>

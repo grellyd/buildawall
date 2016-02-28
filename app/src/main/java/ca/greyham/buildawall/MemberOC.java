@@ -42,6 +42,4 @@ public class MemberOC {
     public void setBillsVetoed(int billsVetoed) {
         this.billsVetoed = billsVetoed;
     }
-
-    
 }

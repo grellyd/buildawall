@@ -1,7 +1,6 @@
 package ca.greyham.buildawall;
 
 import android.content.Context;
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -10,32 +9,27 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link MOCFragment.OnFragmentInteractionListener} interface
+ * {@link MOCCheckboxFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link MOCFragment#newInstance} factory method to
+ * Use the {@link MOCCheckboxFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MOCFragment extends Fragment {
+public class MOCCheckboxFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private static final String NAME = "name";
 
-    // TODO: Rename and change types of parameters
-    //private Integer mParam1;
-    //private String mParam2;
-
-    //new
-    private Integer mBillPassed;
-    private Integer mBillVoted;
+    private String mName;
 
     private OnFragmentInteractionListener mListener;
 
-    public MOCFragment() {
+    public MOCCheckboxFragment() {
         // Required empty public constructor
     }
 
@@ -43,16 +37,14 @@ public class MOCFragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment MOCFragment.
+     * @param name Parameter 1.
+     * @return A new instance of fragment MOCCheckboxFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static MOCFragment newInstance(Integer param1, Integer param2) {
-        MOCFragment fragment = new MOCFragment();
+    public static MOCCheckboxFragment newInstance(String name) {
+        MOCCheckboxFragment fragment = new MOCCheckboxFragment();
         Bundle args = new Bundle();
-        args.putInt(ARG_PARAM1, param1);
-        args.putInt(ARG_PARAM2, param2);
+        args.putString(NAME, name);
         fragment.setArguments(args);
         return fragment;
     }
@@ -61,8 +53,7 @@ public class MOCFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mBillPassed = getArguments().getInt(ARG_PARAM1);
-            mBillVoted = getArguments().getInt(ARG_PARAM2);
+            mName = getArguments().getString(NAME);
         }
     }
 
@@ -70,15 +61,17 @@ public class MOCFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        final View view = inflater.inflate(R.layout.fragment_moc, container, false);
-
-        TextView billPassed = (TextView) view.findViewById(R.id.billPassed);
-        billPassed.setText("Bill Passed : " + mBillPassed.toString()); //add 2 more new fields
-
-        TextView billVoted = (TextView) view.findViewById(R.id.billVoted);
-        billVoted.setText("Bill Voted : " + mBillVoted.toString());
-
+        View view = inflater.inflate(R.layout.fragment_moccheckbox, container, false);
+        TextView mocFragment = (TextView) view.findViewById(R.id.checkbox_moc_name);
+        mocFragment.setText(mName);
         return view;
+    }
+
+    // TODO: Rename method, update argument and hook method into UI event
+    public void onButtonPressed(Uri uri) {
+        if (mListener != null) {
+            mListener.onFragmentInteraction(uri);
+        }
     }
 
     @Override
@@ -97,7 +90,6 @@ public class MOCFragment extends Fragment {
         super.onDetach();
         mListener = null;
     }
-
 
     /**
      * This interface must be implemented by activities that contain this

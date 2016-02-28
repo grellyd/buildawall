@@ -1,8 +1,14 @@
 package ca.greyham.buildawall;
 
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class SelectionActivity extends AppCompatActivity {
 
@@ -14,14 +20,38 @@ public class SelectionActivity extends AppCompatActivity {
     //TODO: If passed then fire the intent to the vote activity
     //TODO: If failed five times, fire the intent to the main_activity
 
+    private Fragment dynamicYesNoFragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_selection);
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+        // TODO: Get server world state
+        // TBRemoved
+        List<MemberOC> mocList = new ArrayList<MemberOC>();
+
+        for (MemberOC moc : mocList) {
+            fragmentManager.beginTransaction();
+            Fragment newMOCCheckboxFragment = MOCCheckboxFragment.newInstance(moc.getName());
+            fragmentTransaction.add(R.id.selection_scroll_view, newMOCCheckboxFragment,"");
+        }
+
+        dynamicYesNoFragment = YesNoFragment.newInstance();
+        fragmentTransaction.add(R.id.selection_linear_layout, dynamicYesNoFragment, "dynamic_yesNo_fragment_tag");
+        fragmentTransaction.commit();
     }
 
     public void onFragmentInteraction(boolean pass)
     {
+        FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager.beginTransaction()
+                .setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out)
+                .hide(dynamicYesNoFragment)
+                .commit();
+        
         //revive/wait response from the server
 
         if(pass){
