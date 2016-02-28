@@ -9,12 +9,23 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".LauncherActivity">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Button"
-        android:id="@+id/button"
-        android:onClick="buttonGo_Click"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/launcher_imageView"
+            android:src=""/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Start Game!"
+            android:id="@+id/launcher_button"
+            android:onClick="buttonGo_Click"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true" />
+    </LinearLayout>
+
 </RelativeLayout>

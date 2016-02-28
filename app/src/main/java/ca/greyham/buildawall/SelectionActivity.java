@@ -6,6 +6,8 @@ import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.CheckBox;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,10 +33,16 @@ public class SelectionActivity extends AppCompatActivity {
         // TBRemoved
         List<MemberOC> mocList = new ArrayList<MemberOC>();
 
+        boolean isLeader = false;
+
         for (MemberOC moc : mocList) {
-            fragmentManager.beginTransaction().setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out);
+            fragmentManager.beginTransaction();
             Fragment newMOCCheckboxFragment = MOCCheckboxFragment.newInstance(moc.getName());
-            fragmentTransaction.add(R.id.selection_scroll_view, newMOCCheckboxFragment,"");
+            CheckBox chkBox = (CheckBox) findViewById(R.id.checkbox_checkbox);
+            if (isLeader) {
+                chkBox.setVisibility(View.VISIBLE);
+            }
+            fragmentTransaction.add(R.id.selection_scroll_view, newMOCCheckboxFragment, "");
         }
 
         Fragment dynamicYesNoFragment = YesNoFragment.newInstance();
