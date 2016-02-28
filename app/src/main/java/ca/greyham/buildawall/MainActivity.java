@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
         for (MemberOC moc : mocList) {
             fragmentManager.beginTransaction();
-            Fragment newMOCFragment = MOCFragment.newInstance("", "");
+            Fragment newMOCFragment = MOCFragment.newInstance(moc.getBillsPassed(), moc.getBillsVetoed());
             fragmentTransaction.add(R.id.mainActivityScrollView, newMOCFragment,"");
         }
     }
