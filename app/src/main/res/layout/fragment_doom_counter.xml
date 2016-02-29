@@ -12,16 +12,16 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
         android:paddingLeft="10dp"
-        android:src="@drawable/UnselectedBox" />
+        android:src="@drawable/unselectedbox" />
 
     <ImageView
-        android:layout_width=""
+        android:layout_width="0dp"
         android:layout_height="40dp"
         android:id="@+id/spacer0"
         android:layout_toRightOf="@+id/doom_counter0"
         android:layout_toEndOf="@+id/doom_counter0"
         android:paddingLeft="10dp"
-        android:src="@drawable/Spacer" />
+        android:src="@drawable/spacer" />
 
 
     <ImageView
@@ -31,7 +31,7 @@
         android:layout_toRightOf="@+id/spacer0"
         android:layout_toEndOf="@+id/spacer0"
         android:paddingLeft="10dp"
-        android:src="@drawable/UnselectedBox" />
+        android:src="@drawable/unselectedbox" />
 
     <ImageView
         android:layout_width="0dp"
@@ -40,7 +40,7 @@
         android:layout_toRightOf="@+id/doom_counter1"
         android:layout_toEndOf="@+id/doom_counter1"
         android:paddingLeft="10dp"
-        android:src="@drawable/Spacer" />
+        android:src="@drawable/spacer" />
 
 
     <ImageView
@@ -50,7 +50,7 @@
         android:layout_toRightOf="@+id/spacer1"
         android:layout_toEndOf="@+id/spacer1"
         android:paddingLeft="10dp"
-        android:src="@drawable/UnselectedBox" />
+        android:src="@drawable/unselectedbox" />
 
     <ImageView
         android:layout_width="0dp"
@@ -59,7 +59,7 @@
         android:layout_toRightOf="@+id/doom_counter2"
         android:layout_toEndOf="@+id/doom_counter2"
         android:paddingLeft="10dp"
-        android:src="@drawable/Spacer" />
+        android:src="@drawable/spacer" />
 
 
     <ImageView
@@ -69,7 +69,7 @@
         android:layout_toRightOf="@+id/spacer2"
         android:layout_toEndOf="@+id/spacer2"
         android:paddingLeft="10dp"
-        android:src="@drawable/UnselectedBox" />
+        android:src="@drawable/unselectedbox" />
 
     <ImageView
         android:layout_width="0dp"
@@ -78,7 +78,7 @@
         android:layout_toRightOf="@+id/doom_counter0"
         android:layout_toEndOf="@+id/doom_counter0"
         android:paddingLeft="10dp"
-        android:src="@drawable/Spacer" />
+        android:src="@drawable/spacer" />
 
 
     <ImageView
@@ -88,7 +88,7 @@
         android:layout_toRightOf="@+id/spacer0"
         android:layout_toEndOf="@+id/spacer0"
         android:paddingLeft="10dp"
-        android:src="@drawable/UnselectedBox" />
+        android:src="@drawable/unselectedbox" />
 
     <ImageView
         android:layout_width="0dp"
@@ -97,7 +97,7 @@
         android:layout_toRightOf="@+id/doom_counter0"
         android:layout_toEndOf="@+id/doom_counter0"
         android:paddingLeft="10dp"
-        android:src="@drawable/Spacer" />
+        android:src="@drawable/spacer" />
 
 
     <ImageView
@@ -107,5 +107,5 @@
         android:layout_toRightOf="@+id/spacer0"
         android:layout_toEndOf="@+id/spacer0"
         android:paddingLeft="10dp"
-        android:src="@drawable/UnselectedBox" />
+        android:src="@drawable/unselectedbox" />
 </LinearLayout>
